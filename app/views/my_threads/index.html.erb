@@ -1,0 +1,15 @@
+<h1>My Thread</h1>
+
+<% @my_threads.each do |my_thread| %>
+<li>
+<span><%= link_to my_thread.title, my_thread_path(my_thread) %></span>
+<p><%= my_thread.description%></p>
+<% if current_user.id == my_thread.user_id %>
+<%= link_to 'Edit', edit_my_thread_path(my_thread) %>
+<%= link_to 'Delete', my_thread_path(my_thread), method: :delete %>
+<% end %>
+</li>
+<% end %>
+
+<%= link_to 'New Thread', new_my_thread_path %>
+<%= link_to 'Log out', destroy_user_session_path, method: :delete %>

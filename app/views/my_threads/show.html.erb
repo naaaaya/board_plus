@@ -1,0 +1,18 @@
+<span>
+  <h1><%= @my_thread.title %></h1>
+  <%= @my_thread.description %>
+<span>
+
+<p><strong>Comments</strong><p>
+<ul>
+  <% @comments.each do |comment| %>
+  <li><%= comment.content %>
+    <% if current_user.id == comment.user_id %>
+    <%= link_to 'Edit', edit_my_thread_comment_path([@my_thread, comment])%>
+    <%= link_to 'Delete', my_thread_comment_path([@my_thread, comment]), method: :delete%>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+<%= link_to 'New Comment', new_my_thread_comment_path(@my_thread) %>
+<%= link_to 'Back', my_threads_path %>
