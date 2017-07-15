@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_my_thread
   before_action :set_comments, only:[:edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :is_owner?, only: [:edit, :update, :destroy]
 
   def new
     @comment = @my_thread.comments.new
@@ -37,5 +38,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content).merge(user_id: current_user.id, my_thread_id: @my_thread.id)
+  end
+
+  def is_owner?
+    redirect_to my_thread_path(@my_thread.id) unless current_user.id == @comment.user_id
   end
 end

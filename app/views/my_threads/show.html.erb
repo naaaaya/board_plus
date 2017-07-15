@@ -8,8 +8,8 @@
   <% @comments.each do |comment| %>
   <li><%= comment.content %>
     <% if current_user.id == comment.user_id %>
-    <%= link_to 'Edit', edit_my_thread_comment_path([@my_thread, comment])%>
-    <%= link_to 'Delete', my_thread_comment_path([@my_thread, comment]), method: :delete%>
+    <%= link_to 'Edit', edit_my_thread_comment_path(@my_thread.id, comment.id)%>
+    <%= link_to 'Delete', my_thread_comment_path(@my_thread.id, comment.id), method: :delete%>
     <% end %>
   </li>
   <% end %>
