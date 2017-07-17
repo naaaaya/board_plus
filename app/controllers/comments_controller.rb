@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_my_thread
   before_action :set_comments, only:[:edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :is_owner?, only: [:edit, :update, :destroy]
+  before_action :is_owner?, only: :edit
 
   def new
     @comment = @my_thread.comments.new

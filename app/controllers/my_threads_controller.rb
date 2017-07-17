@@ -1,7 +1,7 @@
 class MyThreadsController < ApplicationController
   before_action :set_my_thread, only:[:edit, :show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :is_owner?, only:[:edit, :update, :destroy]
+  before_action :is_owner?, only: :edit
   def index
     @my_threads = MyThread.includes(:comments).all
   end
